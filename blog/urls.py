@@ -32,4 +32,6 @@ urlpatterns = [
     path('posts/<int:pk>/', views.PostDetail.as_view(), name="post-detail"),
     path('comments/', views.CommentList.as_view(), name="comment-list"),
     path('comments/<int:pk>/', views.CommentDetail.as_view(), name="comment-detail"),
+    path('tags/', views.CommentList.as_view(), name="tag-list"),
+    path('tags/<int:pk>/', views.CommentDetail.as_view(), name="tag-detail"),
 ]

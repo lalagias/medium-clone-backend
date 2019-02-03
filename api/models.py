@@ -13,6 +13,14 @@ class Profile(models.Model):
         return self.bio
 
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=255)
+
+
+    def __str__(self):
+        return self.tag
+
+
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -20,6 +28,7 @@ class Post(models.Model):
     text = models.TextField(default="")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    tags = models.ManyToManyField(Tag, related_name='posts')
 
     def publish(self):
         self.published_date = timezone.now()
@@ -37,3 +46,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
