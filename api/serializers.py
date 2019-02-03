@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from .models import Post, Profile
+from .models import Post, Profile, Comment
 
 from rest_framework import serializers
 
@@ -15,13 +15,19 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'name')
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ('author','title','description','text','created_date','published_date')
+        fields = ('author', 'title', 'description', 'text', 'created_date', 'published_date')
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
-        fields = ('user','bio','image')     
+        fields = ('user', 'bio', 'image')
+
+
+class CommentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('post', 'author', 'text', 'created_date')

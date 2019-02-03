@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from api.models import Post, Profile
-from api.serializers import UserSerializer, GroupSerializer, PostSerializer, ProfileSerializer
+from api.models import Post, Profile, Comment
+from api.serializers import UserSerializer, GroupSerializer, PostSerializer, ProfileSerializer, CommentSerializer
 
 from rest_framework import generics
 
@@ -45,3 +45,13 @@ class PostList(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
