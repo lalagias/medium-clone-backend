@@ -15,8 +15,7 @@ class Profile(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=255)
-
-
+    
     def __str__(self):
         return self.tag
 
@@ -28,7 +27,7 @@ class Post(models.Model):
     text = models.TextField(default="")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    tags = models.ManyToManyField(Tag, related_name='posts')
+    # tags = models.ManyToManyField(Tag, related_name='posts')
 
     def publish(self):
         self.published_date = timezone.now()
