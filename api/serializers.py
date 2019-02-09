@@ -28,9 +28,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
+    author = ProfileSerializer(read_only=True)
+    
     class Meta:
         model = Post
-        fields = ('id', 'author', 'title', 'description', 'text', 'created_date')
+        fields = ('id', 'author', 'title', 'description', 'text', 'created_date',)
+        # depth = 1
 
 
 class CommentSerializer(serializers.ModelSerializer):
