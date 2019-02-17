@@ -3,10 +3,12 @@ from .models import Post, Profile, Comment, Tag
 
 from rest_framework import serializers
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'groups')
+        fields = ('id', 'username', 'email', 'first_name', 'last_name',
+                  'groups')
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -16,23 +18,35 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username',)
-    first_name = serializers.CharField(source='user.first_name',)
-    last_name = serializers.CharField(source='user.last_name',)
+    username = serializers.CharField(source='user.username', )
+    first_name = serializers.CharField(source='user.first_name', )
+    last_name = serializers.CharField(source='user.last_name', )
 
-    
     class Meta:
         model = Profile
-        fields = ('user', 'username', 'first_name', 'last_name', 'bio', 'image')
-        read_only_fields = ('username', 'first_name', 'last_name',)
+        fields = ('user', 'username', 'first_name', 'last_name', 'bio',
+                  'image')
+        read_only_fields = (
+            'username',
+            'first_name',
+            'last_name',
+        )
 
 
 class PostSerializer(serializers.ModelSerializer):
     author = ProfileSerializer(read_only=True)
-    
+
     class Meta:
         model = Post
-        fields = ('id', 'author', 'title', 'description', 'text', 'created_date',)
+        fields = (
+            'id',
+            'author',
+            'title',
+            'description',
+            'text',
+            'created_date',
+            'image',
+        )
         # depth = 1
 
 
