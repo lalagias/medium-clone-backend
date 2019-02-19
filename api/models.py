@@ -30,11 +30,11 @@ class Tag(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, related_name="author_post")
+        User, on_delete=models.CASCADE, related_name="author_post")
     title = models.CharField(max_length=200)
     description = models.TextField(default="")
     text = models.TextField(default="")
-    created_date = models.DateTimeField(default=timezone.now)
+    created_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True, blank=True, upload_to="postImages")
 
     # tags = models.ManyToManyField(Tag, related_name='posts')

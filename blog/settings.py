@@ -24,7 +24,7 @@ SECRET_KEY = '*9iou4)*spksc78rg&)2v8=q_x-kmis4e0l$_&iz1*idaou@d3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -127,8 +127,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES':
-    ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']
+    # 'DEFAULT_AUTHENTICATION_CLASSES':
+    # ('rest_framework.authentication.SessionAuthentication',
+    #  'rest_framework.authentication.BasicAuthentication')
 }
 
 CORS_ORIGIN_WHITELIST = 'localhost:3000',

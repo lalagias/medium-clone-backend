@@ -34,7 +34,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = ProfileSerializer(read_only=True)
+    author = UserSerializer(read_only=True)
 
     class Meta:
         model = Post
