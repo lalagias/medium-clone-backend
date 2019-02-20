@@ -127,10 +127,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']
+    'DEFAULT_AUTHENTICATION_CLASSES':
+    ('rest_framework_simplejwt.authentication.JWTAuthentication', ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny', )
+
     # 'DEFAULT_AUTHENTICATION_CLASSES':
     # ('rest_framework.authentication.SessionAuthentication',
     #  'rest_framework.authentication.BasicAuthentication')
 }
 
 CORS_ORIGIN_WHITELIST = 'localhost:3000',
+
+# curl \
+#   -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTUwNjIzMjc2LCJqdGkiOiI4ZDUwYzM2MWY0OGQ0NjJkYjI4NDgyY2E3NGYzYjg5ZCIsInVzZXJfaWQiOjF9.ZF_uyuYtye0Qs7DK3pGpW4fweVivvoCQ9Dnb8tfKizk" \
+#   -d '{"title": "Kalispera", "description": "kalinixta", "text": "mipws", "image": null}' \
+#   http://localhost:8000/posts/

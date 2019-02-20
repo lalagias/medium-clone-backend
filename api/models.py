@@ -31,9 +31,9 @@ class Tag(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="author_post")
-    title = models.CharField(max_length=200)
-    description = models.TextField(default="")
-    text = models.TextField(default="")
+    title = models.CharField(max_length=200, blank=False)
+    description = models.TextField(blank=False)
+    text = models.TextField(blank=False)
     created_date = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True, blank=True, upload_to="postImages")
 
